@@ -1,0 +1,38 @@
+services:
+  php:
+      image: tmolleyres/apachewithcomposerandphpunit1.0:latest
+      volumes:
+        - ./my-website:/var/www/html
+      environment:
+        TZ: Europe/Zurich
+        PUID: ${UID:-9999}
+        PGID: ${GID:-9999}
+      ports:
+        - 80:80
+      links:
+        - db
+      depends_on:
+        - sonarqube
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: my_database
+    ports:
+      - 3306:3306
+  sonarqube:
+    image: sonarqube
+    ports:
+      - 9000:9000
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+      
+volumes:
+  sonarqube_data:
