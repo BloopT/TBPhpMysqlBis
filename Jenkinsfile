@@ -23,7 +23,7 @@ pipeline {
 
         stage('Run PHP Unit Tests') {
             steps {
-                sh 'docker-compose run --rm run --rm php vendor/bin/phpunit tests/ConnexionBddTest.php'
+                sh 'docker-compose run --rm php vendor/bin/phpunit tests/ConnexionBddTest.php'
             }
         }
 
