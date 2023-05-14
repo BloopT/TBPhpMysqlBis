@@ -16,7 +16,7 @@ pipeline {
 
         stage('Start Docker Compose Environment') {
             steps {
-                sh 'sudo docker-compose up -d'
+                sh 'docker-compose up -d'
                 sleep 60 
             }
         }
@@ -37,7 +37,7 @@ pipeline {
 
         stage('Stop Docker Compose Environment') {
             steps {
-                sh 'sudo docker-compose down'
+                sh 'docker-compose down'
             }
         }
 
