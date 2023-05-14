@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']],
-                userRemoteConfigs: [[url: 'https://github.com/BloopT/TBPhpMySql.git']]])           
+                userRemoteConfigs: [[url: 'https://github.com/BloopT/TBPhpMysqlBis.git']]])           
             }
         }
         stage('Build Docker Images') {
@@ -16,7 +16,7 @@ pipeline {
 
         stage('Start Docker Compose Environment') {
             steps {
-                sh 'docker-compose up -d'
+                sh 'sudo docker-compose up -d'
                 sleep 60 
             }
         }
@@ -37,7 +37,7 @@ pipeline {
 
         stage('Stop Docker Compose Environment') {
             steps {
-                sh 'docker-compose down'
+                sh 'sudo docker-compose down'
             }
         }
 
